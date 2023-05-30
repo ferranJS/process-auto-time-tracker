@@ -14,14 +14,15 @@ public class ProcessesAutoTimeTracker {
             sw.AutoFlush = true;
             Console.WriteLine(sr.ReadToEnd());
             if (sr.ReadToEnd() == "") {
-                sw.Write("zelda: " + totalTime, false);
+                sw.Write("zelda: " + totalTime);
                 //fs.Position = 0;
-                //fs.Seek(2, SeekOrigin.Begin);
+                //fs.Seek(0, SeekOrigin.Begin);
             }
             Console.WriteLine(sr.ReadToEnd());
             //Console.Write(fs.Seek(0, SeekOrigin.Begin));
             //string time = sr.ReadToEnd().Split(' ')[0];
             while (true) {
+                fs.Seek(0, SeekOrigin.Begin);
                 if (process == null) {
                     Console.Write(".");
                     process = Process.GetProcessesByName("yuzu").FirstOrDefault();
@@ -31,7 +32,7 @@ public class ProcessesAutoTimeTracker {
                     process.EnableRaisingEvents = true;
                     process.Exited += Process_Exited;
                     totalTime += TimeSpan.FromSeconds(sleepMs/1000);
-                    sw.WriteLine("zelda: "+totalTime, false);
+                    sw.Write("zelda: "+totalTime);
                     // sw.Close(); without Close(), text is never written in drive
                 }
                 Thread.Sleep(sleepMs);
