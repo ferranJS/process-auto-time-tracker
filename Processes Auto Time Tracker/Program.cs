@@ -7,7 +7,7 @@ public class ProcessesAutoTimeTracker {
 
     static void Main(string[] args) {
         Console.WriteLine("Runnin'!");
-        using (FileStream fs = new FileStream("timeCounters.json", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read))
+        using (FileStream fs = new FileStream("timeCounters.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read))
         using (StreamReader sr = new StreamReader(fs))
         using (StreamWriter sw = new StreamWriter(fs))
         {
